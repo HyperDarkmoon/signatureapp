@@ -1,60 +1,49 @@
 package com.hyper.signatureapp.models;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
+
 public class RegisterDto {
+    @NotEmpty
     private String username;
+    @NotEmpty
+    @Size(min = 6, message="Password must be at least 6 characters long")
     private String password;
+    @NotEmpty
     private String email;
-    private String firstName;
-    private String lastName;
+    @NotEmpty
+    private byte[] signature;
 
-    public RegisterDto() {
+    public @NotEmpty String getUsername() {
+        return username;
     }
 
-    public RegisterDto(String username, String password, String email, String firstName, String lastName) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return this.username;
-    }
-
-    public void setUsername(String username) {
+    public void setUsername(@NotEmpty String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return this.password;
+    public @NotEmpty @Size(min = 6, message="Password must be at least 6 characters long") String getPassword() {
+        return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(@NotEmpty @Size(min = 6, message="Password must be at least 6 characters long") String password) {
         this.password = password;
     }
 
-    public String getEmail() {
-        return this.email;
+    public @NotEmpty String getEmail() {
+        return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(@NotEmpty String email) {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return this.firstName;
+    public @NotEmpty byte[] getSignature() {
+        return signature;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSignature(@NotEmpty byte[] signature) {
+        this.signature = signature;
     }
 }
