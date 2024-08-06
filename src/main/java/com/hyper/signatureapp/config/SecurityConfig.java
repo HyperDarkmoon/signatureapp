@@ -8,6 +8,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -15,14 +17,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors().and()  // Enable CORS
-                .csrf().disable()  // Disable CSRF for simplicity (enable it in production with proper configuration)
-                .authorizeRequests()
-                .requestMatchers("/api/users/register").permitAll()  // Allow registration without authentication
-                .anyRequest().authenticated()
-                .and()
-                .formLogin().and()
-                .httpBasic();
+                .cors(cors -> cors.disable())  // Disable CORS
+                .csrf(csrf -> csrf.disable())  // Disable CSRF for simplicity (enable it in production with proper configuration)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/users/register").permitAll()  // Allow registration without authentication
+                        .anyRequest().authenticated()
+                )
+                .formLogin(withDefaults())  // Enable form login with default settings
+                .httpBasic(withDefaults());  // Enable HTTP Basic authentication with default settings
         return http.build();
     }
 
