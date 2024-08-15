@@ -14,6 +14,68 @@ public class RegisterDto {
     private String email;
     @NotEmpty
     private byte[] signature;
+    @NotEmpty
+    private String firstName;
+    @NotEmpty
+    private String lastName;
+    @NotEmpty
+    private String phone;
+
+    public @NotEmpty String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(@NotEmpty String offer) {
+        this.offer = offer;
+    }
+
+    @NotEmpty
+    private String idCard;
+    @NotEmpty
+    private String address;
+    @NotEmpty
+    private String offer;
+
+
+    public @NotEmpty String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(@NotEmpty String firstName) {
+        this.firstName = firstName;
+    }
+
+    public @NotEmpty String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(@NotEmpty String lastName) {
+        this.lastName = lastName;
+    }
+
+    public @NotEmpty String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(@NotEmpty String phone) {
+        this.phone = phone;
+    }
+
+    public @NotEmpty String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(@NotEmpty String idCard) {
+        this.idCard = idCard;
+    }
+
+    public @NotEmpty String getAddress() {
+        return address;
+    }
+
+    public void setAddress(@NotEmpty String address) {
+        this.address = address;
+    }
 
     public @NotEmpty String getUsername() {
         return username;

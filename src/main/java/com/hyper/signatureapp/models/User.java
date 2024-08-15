@@ -15,6 +15,60 @@ public class User {
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] signature;
+    private String firstName;
+    private String lastName;
+    private String phone;
+    private String idCard;
+    private String address;
+    private String offer;
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
     public int getId() {
         return id;

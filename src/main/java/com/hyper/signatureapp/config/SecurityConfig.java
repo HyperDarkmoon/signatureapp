@@ -17,19 +17,24 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(cors -> cors.disable())  // Disable CORS
-                .csrf(csrf -> csrf.disable())  // Disable CSRF for simplicity (enable it in production with proper configuration)
+                .cors(cors -> cors.disable())  // Disable CORS (should be managed in WebConfig)
+                .csrf(csrf -> csrf.disable())  // Disable CSRF (enable it in production with proper configuration)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/users/register").permitAll()  // Allow registration without authentication
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/users/check").permitAll()  // Allow check user existence without authentication
+                        .anyRequest().authenticated()  // Require authentication for other requests
                 )
-                .formLogin(withDefaults())  // Enable form login with default settings
-                .httpBasic(withDefaults());  // Enable HTTP Basic authentication with default settings
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/login")  // Customize the login page URL if needed
+                        .permitAll()  // Allow unauthenticated access to login page
+                )
+                .httpBasic(withDefaults());  // Enable HTTP Basic authentication
+
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return new BCryptPasswordEncoder();  // Bean for encoding passwords
     }
 }
