@@ -149,6 +149,7 @@ public class UserController {
             response.put("offer", user.getOffer());
             response.put("item", user.getItem());
             response.put("signature", Base64.getEncoder().encodeToString(user.getSignature()));
+            response.put("username", user.getUsername());
             return ResponseEntity.ok(response);
         } else {
             logger.info("User not found with username: {}", username);
