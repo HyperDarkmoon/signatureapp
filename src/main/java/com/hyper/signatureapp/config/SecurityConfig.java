@@ -22,6 +22,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/users/register").permitAll()  // Allow registration without authentication
                         .requestMatchers("/api/users/check").permitAll()  // Allow check user existence without authentication
+                        .requestMatchers("/api/users/information").permitAll()
                         .anyRequest().authenticated()  // Require authentication for other requests
                 )
                 .formLogin(formLogin -> formLogin

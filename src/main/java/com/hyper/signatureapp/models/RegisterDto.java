@@ -20,6 +20,15 @@ public class RegisterDto {
     private String lastName;
     @NotEmpty
     private String phone;
+    @NotEmpty
+    private String idCard;
+    @NotEmpty
+    private String address;
+    @NotEmpty
+    private String offer;
+
+    @NotEmpty
+    private String item;
 
     public @NotEmpty String getOffer() {
         return offer;
@@ -29,13 +38,13 @@ public class RegisterDto {
         this.offer = offer;
     }
 
-    @NotEmpty
-    private String idCard;
-    @NotEmpty
-    private String address;
-    @NotEmpty
-    private String offer;
+    public @NotEmpty String getItem() {
+        return item;
+    }
 
+    public void setItem(@NotEmpty String item) {
+        this.item = item;
+    }
 
     public @NotEmpty String getFirstName() {
         return firstName;

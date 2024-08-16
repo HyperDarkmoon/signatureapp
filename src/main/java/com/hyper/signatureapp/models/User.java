@@ -21,6 +21,15 @@ public class User {
     private String idCard;
     private String address;
     private String offer;
+    private String item;
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
 
     public String getOffer() {
         return offer;

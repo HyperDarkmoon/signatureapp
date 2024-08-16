@@ -12,9 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -60,6 +59,7 @@ public class UserController {
         user.setIdCard(registerDto.getIdCard());
         user.setAddress(registerDto.getAddress());
         user.setOffer(registerDto.getOffer());
+        user.setItem(registerDto.getItem());
 
         try {
             if (userRepository.findByUsername(registerDto.getUsername()) != null) {
@@ -133,14 +133,26 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/infocheck")
-    public ResponseEntity<Map<String, Boolean>> checkUserInfo(
-            @RequestParam String phone,
-            @RequestParam String idCard) {
-        logger.info("Checking existence for phone: {} and idCard: {}", phone, idCard);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("phoneExists", userRepository.findByPhone(phone) != null);
-        response.put("idCardExists", userRepository.findByIdCard(idCard) != null);
-        return ResponseEntity.ok(response);
+    @GetMapping("/information")
+    public ResponseEntity<Map<String, String>> getUserInformation(
+            @RequestParam String username) {
+        logger.info("Getting information for username: {}", username);
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            Map<String, String> response = new HashMap<>();
+            response.put("firstName", user.getFirstName());
+            response.put("lastName", user.getLastName());
+            response.put("phone", user.getPhone());
+            response.put("idCard", user.getIdCard());
+            response.put("address", user.getAddress());
+            response.put("email", user.getEmail());
+            response.put("offer", user.getOffer());
+            response.put("item", user.getItem());
+            response.put("signature", Base64.getEncoder().encodeToString(user.getSignature()));
+            return ResponseEntity.ok(response);
+        } else {
+            logger.info("User not found with username: {}", username);
+            return ResponseEntity.notFound().build();
+        }
     }
 }
