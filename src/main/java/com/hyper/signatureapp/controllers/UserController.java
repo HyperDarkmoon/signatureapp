@@ -60,6 +60,8 @@ public class UserController {
         user.setAddress(registerDto.getAddress());
         user.setOffer(registerDto.getOffer());
         user.setItem(registerDto.getItem());
+        user.setDob(registerDto.getDob());
+        user.setDate(registerDto.getDate());
 
         try {
             if (userRepository.findByUsername(registerDto.getUsername()) != null) {
@@ -150,6 +152,8 @@ public class UserController {
             response.put("item", user.getItem());
             response.put("signature", Base64.getEncoder().encodeToString(user.getSignature()));
             response.put("username", user.getUsername());
+            response.put("dob", user.getDob());
+            response.put("date", user.getDate());
             return ResponseEntity.ok(response);
         } else {
             logger.info("User not found with username: {}", username);

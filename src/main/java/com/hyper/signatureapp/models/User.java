@@ -22,6 +22,24 @@ public class User {
     private String address;
     private String offer;
     private String item;
+    private String dob;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
 
     public String getItem() {
         return item;
