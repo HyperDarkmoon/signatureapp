@@ -135,6 +135,13 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/allusers")
+    public ResponseEntity<List<User>> getAllUsersInformation() {
+        logger.info("Getting information for all users");
+        List<User> users = userRepository.findAll();
+        return ResponseEntity.ok(users);
+    }
+
     @GetMapping("/information")
     public ResponseEntity<Map<String, String>> getUserInformation(
             @RequestParam String username) {
