@@ -62,6 +62,8 @@ public class UserController {
         user.setItem(registerDto.getItem());
         user.setDob(registerDto.getDob());
         user.setDate(registerDto.getDate());
+        user.setidCardFront(registerDto.getidCardFront());
+        user.setidCardBack(registerDto.getidCardBack());
 
         try {
             if (userRepository.findByUsername(registerDto.getUsername()) != null) {

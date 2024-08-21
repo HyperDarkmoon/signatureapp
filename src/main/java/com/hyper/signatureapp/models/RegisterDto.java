@@ -33,6 +33,26 @@ public class RegisterDto {
     private String dob;
     @NotEmpty
     private String date;
+    @NotEmpty
+    private byte[] idCardFront;
+    @NotEmpty
+    private byte[] idCardBack;
+
+    public byte[] getidCardBack() {
+        return idCardBack;
+    }
+
+    public void setidCardBack(byte[] idCardBack) {
+        this.idCardBack = idCardBack;
+    }
+
+    public byte[] getidCardFront() {
+        return idCardFront;
+    }
+
+    public void setidCardFront(byte[] idCardFront) {
+        this.idCardFront = idCardFront;
+    }
 
     public String getDate() {
         return date;

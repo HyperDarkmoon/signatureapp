@@ -24,6 +24,29 @@ public class User {
     private String item;
     private String dob;
     private String date;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] idCardFront;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] idCardBack;
+
+    public byte[] getidCardBack() {
+        return idCardBack;
+    }
+
+    public void setidCardBack(byte[] idCardBack) {
+        this.idCardBack = idCardBack;
+    }
+    
+
+    public byte[] getidCardFront() {
+        return idCardFront;
+    }
+
+    public void setidCardFront(byte[] idCardFront) {
+        this.idCardFront = idCardFront;
+    }
 
     public String getDate() {
         return date;
