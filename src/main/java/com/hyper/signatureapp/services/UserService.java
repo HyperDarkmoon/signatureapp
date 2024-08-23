@@ -3,8 +3,8 @@ package com.hyper.signatureapp.services;
 import com.hyper.signatureapp.models.User;
 import com.hyper.signatureapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Base64;
 import java.util.Optional;
 
@@ -12,9 +12,13 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserRepository userRepository;
 
     public User saveUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
