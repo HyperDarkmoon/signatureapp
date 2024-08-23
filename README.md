@@ -23,3 +23,8 @@ The backend is built with Spring Boot and uses a MySQL database to store users a
 1. Run the application: `./mvnw spring-boot:run` or with your IDE
 2. The server is now running on `http://localhost:8085` by default, you can change the port in `application.properties`
 
+## Technologiges Used
+
+- Spring Boot
+- MySQL
+- Maven
