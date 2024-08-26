@@ -163,6 +163,8 @@ public class UserController {
             response.put("username", user.getUsername());
             response.put("dob", user.getDob());
             response.put("date", user.getDate());
+            response.put("idCardFront", Base64.getEncoder().encodeToString(user.getidCardFront()));
+            response.put("idCardBack", Base64.getEncoder().encodeToString(user.getidCardBack()));
             return ResponseEntity.ok(response);
         } else {
             logger.info("User not found with username: {}", username);
